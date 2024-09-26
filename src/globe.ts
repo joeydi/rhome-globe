@@ -21,8 +21,8 @@ export function initGlobe(element: HTMLDivElement | null) {
     center: [-96.4, 56.43],
     zoom: 3,
     maxZoom: 4.8,
-    minZoom: 2.8,
-    pitch: 60,
+    minZoom: 2.5,
+    pitch: 75,
   });
 
   const markers: Marker[] = [];
@@ -30,7 +30,17 @@ export function initGlobe(element: HTMLDivElement | null) {
   for (const feature of data) {
     const el = document.createElement("div");
     el.className = "marker";
-    el.innerHTML = `<div class="card"><img src="${feature.image}" alt="" /><div class="details"><span>${feature.price}</span><span>${feature.type}</span></div></div>`;
+    el.innerHTML = `
+        <div class="card">
+            <img src="${feature.image}" alt="" />
+            <div class="details">
+                <span>${feature.price}</span>
+                <span>${feature.type}</span>
+            </div>
+        </div>
+        <div class="flag">
+            <img src="/flags/${feature.country}.svg" alt="" />
+        </div>`;
 
     const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
     markers.push(marker);
@@ -68,7 +78,7 @@ export function initGlobe(element: HTMLDivElement | null) {
 
       if (markerElement && cardElement) {
         markerElement.style.zIndex = `${zIndex}`;
-        cardElement.style.filter = `blur(${blur}px)`;
+        markerElement.style.filter = `blur(${blur}px)`;
         cardElement.style.scale = `${scale}`;
       }
     }
