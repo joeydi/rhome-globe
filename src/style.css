@@ -1,0 +1,79 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0d0f15;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+#globe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* .marker {
+  width: auto;
+  height: auto;
+
+} */
+
+.marker .card {
+  transform-origin: 50% 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.marker img {
+  display: block;
+  width: 160px;
+  aspect-ratio: 1.5;
+  object-fit: cover;
+  margin: 8px;
+  border-radius: 14px;
+}
+
+.marker .details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 16px;
+  font-weight: bold;
+}
+
+.marker span:nth-child(1) {
+  color: #ffffff;
+}
+
+.marker span:nth-child(2) {
+  color: #bec4d0;
+}

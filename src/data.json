@@ -1,0 +1,90 @@
+[
+    {
+        "image": "/homes/dillon-kydd-XGvwt544g8k-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -96.4,
+        "lat": 56.43
+    },
+    {
+        "image": "/homes/aiden-craver-c48Pusifxu0-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -78.04,
+        "lat": 43.82
+    },
+    {
+        "image": "/homes/christopher-holmok-j9_ZlyyKhx4-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -111.38,
+        "lat": 57.56
+    },
+    {
+        "image": "/homes/dillon-kydd-2keCPb73aQY-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -93.1,
+        "lat": 32.47
+    },
+    {
+        "image": "/homes/dillon-kydd-3Ignkeds3w8-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -83.57,
+        "lat": 23.07
+    },
+    {
+        "image": "/homes/hans-art-id-_TK1lMgQLrM-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -62.12,
+        "lat": 8.88
+    },
+    {
+        "image": "/homes/jared-rice-AhiUnolb7cg-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": 11.13,
+        "lat": 51.22
+    },
+    {
+        "image": "/homes/mark-grandcourt-QeC_YOzGGj0-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": 0.79,
+        "lat": 57.21
+    },
+    {
+        "image": "/homes/valerie-sOKD4DUXNy8-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": 8.48,
+        "lat": 54.85
+    },
+    {
+        "image": "/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": 18.86,
+        "lat": 58.12
+    },
+    {
+        "image": "/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
+        "country": "us",
+        "price": "$1,213/mo",
+        "type": "Apt.",
+        "lng": -21.47,
+        "lat": 38.42
+    }
+]
