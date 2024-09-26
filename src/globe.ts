@@ -20,6 +20,8 @@ export function initGlobe(element: HTMLDivElement | null) {
     style: "mapbox://styles/joeydi/cm1jhfcv6002001p850dd15pk",
     center: [-96.4, 56.43],
     zoom: 3,
+    maxZoom: 4.8,
+    minZoom: 2.8,
     pitch: 60,
   });
 
@@ -30,19 +32,21 @@ export function initGlobe(element: HTMLDivElement | null) {
     el.className = "marker";
     el.innerHTML = `<div class="card"><img src="${feature.image}" alt="" /><div class="details"><span>${feature.price}</span><span>${feature.type}</span></div></div>`;
 
-    const marker = new mapboxgl.Marker(el).setLngLat([feature.lng, feature.lat]).addTo(map);
+    const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
     markers.push(marker);
   }
 
-  //   map.on("click", (e) => {
-  //     const center = map.getCenter();
-  //     console.log(center);
+  map.on("click", (e) => {
+    //   const center = map.getCenter();
+    //   console.log(center);
 
-  //     const zoom = map.getZoom();
-  //     console.log(zoom);
+    // const zoom = map.getZoom();
+    // console.log(zoom);
 
-  //     console.log(e.lngLat);
-  //   });
+    console.log(e.lngLat);
+  });
+
+  const zScale = mapRange(0, 10000, 1000, 1);
   const scaleBlur = mapRange(3000, 10000, 0, 10);
   const scaleScale = mapRange(0, 10000, 1, 0.5);
 
@@ -50,19 +54,22 @@ export function initGlobe(element: HTMLDivElement | null) {
   //   console.log(scale(1000));
   //   console.log(scale(10000));
 
-  map.on("drag", () => {
+  map.on("move", () => {
     const center = map.getCenter();
 
     for (const marker of markers) {
       const distance = center.distanceTo(marker.getLngLat()) / 1000;
+      const zIndex = Math.floor(zScale(distance));
       const blur = scaleBlur(distance);
       const scale = scaleScale(distance);
 
-      const card: HTMLDivElement | null = marker.getElement().querySelector(".card");
+      const markerElement = marker.getElement();
+      const cardElement: HTMLDivElement | null = markerElement.querySelector(".card");
 
-      if (card) {
-        card.style.filter = `blur(${blur}px)`;
-        card.style.scale = `${scale}`;
+      if (markerElement && cardElement) {
+        markerElement.style.zIndex = `${zIndex}`;
+        cardElement.style.filter = `blur(${blur}px)`;
+        cardElement.style.scale = `${scale}`;
       }
     }
   });
