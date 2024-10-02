@@ -34,32 +34,14 @@ body {
 header {
   position: relative;
   z-index: 1;
-  height: 89vw;
-  margin-bottom: -10vw;
-  background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-mobile.svg") 50% 0 / contain no-repeat,
-    linear-gradient(to bottom, #0e121b, transparent) 50% 100% / auto 10vw repeat-x;
+  height: 79vw;
+  background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-mobile.svg") 50% 0 / contain no-repeat;
 }
 
 @media (min-width: 992px) {
   header {
-    height: 37vw;
-    margin-bottom: -15vw;
-    background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-desktop.svg") 50% 0 / contain no-repeat,
-      linear-gradient(to bottom, #0e121b, transparent) 50% 100% / auto 15vw repeat-x;
-  }
-}
-
-@media (min-width: 1200px) {
-  header {
-    margin-bottom: -20vw;
-    background-size: contain, auto 20vw;
-  }
-}
-
-@media (min-width: 1920px) {
-  header {
-    margin-bottom: -25vw;
-    background-size: contain, auto 25vw;
+    height: 27vw;
+    background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-desktop.svg") 50% 0 / contain no-repeat;
   }
 }
 
@@ -68,17 +50,42 @@ header {
   z-index: 0;
   width: 100%;
   aspect-ratio: 0.85;
+  margin-top: -20vw;
 }
 
-@media (min-width: 575px) {
+#globe::after {
+  content: "";
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20vw;
+  background: linear-gradient(to bottom, #0e121b, transparent) 50% 0 repeat-x;
+}
+
+@media (min-width: 768px) {
   #globe {
-    aspect-ratio: 1.25;
+    aspect-ratio: 1;
   }
 }
 
 @media (min-width: 992px) {
   #globe {
-    aspect-ratio: 16 / 9;
+    margin-top: -10vw;
+    aspect-ratio: 1.5;
+  }
+}
+
+@media (min-width: 1200px) {
+  #globe {
+    aspect-ratio: 1.75;
+  }
+}
+
+@media (min-width: 1600px) {
+  #globe {
+    aspect-ratio: 2;
   }
 }
 
