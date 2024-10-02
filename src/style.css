@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #0d0f15;
+  background-color: #0e121b;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,14 +28,58 @@ html {
 }
 
 body {
-  /* display: flex; */
-  /* align-items: flex-end; */
   min-height: 100%;
 }
 
+header {
+  position: relative;
+  z-index: 1;
+  height: 89vw;
+  margin-bottom: -10vw;
+  background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-mobile.svg") 50% 0 / contain no-repeat,
+    linear-gradient(to bottom, #0e121b, transparent) 50% 100% / auto 10vw repeat-x;
+}
+
+@media (min-width: 992px) {
+  header {
+    height: 37vw;
+    margin-bottom: -15vw;
+    background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-desktop.svg") 50% 0 / contain no-repeat,
+      linear-gradient(to bottom, #0e121b, transparent) 50% 100% / auto 15vw repeat-x;
+  }
+}
+
+@media (min-width: 1200px) {
+  header {
+    margin-bottom: -20vw;
+    background-size: contain, auto 20vw;
+  }
+}
+
+@media (min-width: 1920px) {
+  header {
+    margin-bottom: -25vw;
+    background-size: contain, auto 25vw;
+  }
+}
+
 #globe {
+  position: relative;
+  z-index: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 0.85;
+}
+
+@media (min-width: 575px) {
+  #globe {
+    aspect-ratio: 1.25;
+  }
+}
+
+@media (min-width: 992px) {
+  #globe {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .marker .card {

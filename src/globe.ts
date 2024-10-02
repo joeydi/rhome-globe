@@ -23,6 +23,11 @@ export function initGlobe(element: HTMLDivElement | null) {
     maxZoom: 4.8,
     minZoom: 2.5,
     pitch: 75,
+    scrollZoom: false,
+    boxZoom: false,
+    doubleClickZoom: false,
+    dragRotate: false,
+    touchPitch: false,
   });
 
   const markers: Marker[] = [];
@@ -39,30 +44,16 @@ export function initGlobe(element: HTMLDivElement | null) {
             </div>
         </div>
         <div class="flag">
-            <img src="/flags/${feature.country}.svg" alt="" />
+            <img src="https://simple-creature-website-assets.s3.amazonaws.com/rhome/flags/${feature.country}.svg" alt="" />
         </div>`;
 
     const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
     markers.push(marker);
   }
 
-  map.on("click", (e) => {
-    //   const center = map.getCenter();
-    //   console.log(center);
-
-    // const zoom = map.getZoom();
-    // console.log(zoom);
-
-    console.log(e.lngLat);
-  });
-
   const zScale = mapRange(0, 10000, 1000, 1);
   const scaleBlur = mapRange(3000, 10000, 0, 10);
   const scaleScale = mapRange(0, 10000, 1, 0.5);
-
-  //   console.log(scale(100));
-  //   console.log(scale(1000));
-  //   console.log(scale(10000));
 
   map.on("move", () => {
     const center = map.getCenter();

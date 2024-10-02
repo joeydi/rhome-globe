@@ -1,6 +1,6 @@
 [
     {
-        "image": "/homes/dillon-kydd-XGvwt544g8k-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/dillon-kydd-XGvwt544g8k-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -8,7 +8,7 @@
         "lat": 56.43
     },
     {
-        "image": "/homes/aiden-craver-c48Pusifxu0-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/aiden-craver-c48Pusifxu0-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -16,7 +16,7 @@
         "lat": 43.82
     },
     {
-        "image": "/homes/christopher-holmok-j9_ZlyyKhx4-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/christopher-holmok-j9_ZlyyKhx4-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -24,7 +24,7 @@
         "lat": 38.03
     },
     {
-        "image": "/homes/dillon-kydd-2keCPb73aQY-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/dillon-kydd-2keCPb73aQY-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -32,7 +32,7 @@
         "lat": 32.47
     },
     {
-        "image": "/homes/dillon-kydd-3Ignkeds3w8-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/dillon-kydd-3Ignkeds3w8-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -40,7 +40,7 @@
         "lat": 23.07
     },
     {
-        "image": "/homes/hans-art-id-_TK1lMgQLrM-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/hans-art-id-_TK1lMgQLrM-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -48,7 +48,7 @@
         "lat": 8.88
     },
     {
-        "image": "/homes/jared-rice-AhiUnolb7cg-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/jared-rice-AhiUnolb7cg-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -56,7 +56,7 @@
         "lat": 51.22
     },
     {
-        "image": "/homes/mark-grandcourt-QeC_YOzGGj0-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/mark-grandcourt-QeC_YOzGGj0-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -64,7 +64,7 @@
         "lat": 57.21
     },
     {
-        "image": "/homes/valerie-sOKD4DUXNy8-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/valerie-sOKD4DUXNy8-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -72,7 +72,7 @@
         "lat": 54.85
     },
     {
-        "image": "/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
@@ -80,7 +80,7 @@
         "lat": 58.12
     },
     {
-        "image": "/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
+        "image": "https://simple-creature-website-assets.s3.amazonaws.com/rhome/homes/zac-gudakov-wwqZ8CM21gg-unsplash.jpg",
         "country": "us",
         "price": "$1,213/mo",
         "type": "Apt.",
