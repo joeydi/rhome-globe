@@ -77,6 +77,11 @@ export function initGlobe(element: HTMLDivElement | null) {
     clearTimeout(interactionTimeout);
   });
 
+  map.on("touchstart", () => {
+    userInteracting = true;
+    clearTimeout(interactionTimeout);
+  });
+
   // Restart spinning the globe when interaction is complete
   map.on("mouseup", () => {
     interactionTimeout = setTimeout(() => {
