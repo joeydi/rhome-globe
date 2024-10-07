@@ -93,7 +93,7 @@ header {
   transform-origin: 50% 100%;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.6);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(10px);
 }
 
