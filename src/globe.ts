@@ -37,14 +37,14 @@ export function initGlobe(element: HTMLDivElement | null) {
     el.className = "marker";
     el.innerHTML = `
         <div class="card">
-            <img src="${feature.image}" alt="" />
+            <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
             <div class="details">
                 <span>${feature.price}</span>
                 <span>${feature.type}</span>
             </div>
         </div>
         <div class="flag">
-            <img src="https://simple-creature-website-assets.s3.amazonaws.com/rhome/flags/${feature.country}.svg" alt="" />
+            <img src="${import.meta.env.VITE_ASSET_ROOT}/flags/${feature.country}.svg" alt="" />
         </div>`;
 
     const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);

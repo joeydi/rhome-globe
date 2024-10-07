@@ -35,13 +35,13 @@ header {
   position: relative;
   z-index: 1;
   height: 79vw;
-  background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-mobile.svg") 50% 0 / contain no-repeat;
+  background: url("https://rhome-website-dev.s3.amazonaws.com/globe/header-mobile.svg") 50% 0 / contain no-repeat;
 }
 
 @media (min-width: 992px) {
   header {
     height: 27vw;
-    background: url("https://simple-creature-website-assets.s3.amazonaws.com/rhome/header-desktop.svg") 50% 0 / contain no-repeat;
+    background: url("https://rhome-website-dev.s3.amazonaws.com/globe/header-desktop.svg") 50% 0 / contain no-repeat;
   }
 }
 
