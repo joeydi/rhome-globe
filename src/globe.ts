@@ -32,6 +32,8 @@ export function initGlobe(element: HTMLDivElement | null) {
 
   const markers: Marker[] = [];
 
+  const zScale = mapRange(0, 90, 1000, 0);
+
   for (const feature of data) {
     const el = document.createElement("div");
     el.className = "marker";
@@ -48,10 +50,14 @@ export function initGlobe(element: HTMLDivElement | null) {
         </div>`;
 
     const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
+
+    const zIndex = Math.floor(zScale(feature.lat)).toString();
+    const element = marker.getElement();
+    element.style.zIndex = zIndex;
+
     markers.push(marker);
   }
 
-  const zScale = mapRange(0, 10000, 1000, 1);
   const scaleBlur = mapRange(3000, 10000, 0, 10);
   const scaleScale = mapRange(0, 10000, 1, 0.5);
 
@@ -60,7 +66,6 @@ export function initGlobe(element: HTMLDivElement | null) {
 
     for (const marker of markers) {
       const distance = center.distanceTo(marker.getLngLat()) / 1000;
-      const zIndex = Math.floor(zScale(distance));
       const blur = scaleBlur(distance);
       const scale = scaleScale(distance);
 
@@ -68,7 +73,6 @@ export function initGlobe(element: HTMLDivElement | null) {
       const cardElement: HTMLDivElement | null = markerElement.querySelector(".card");
 
       if (markerElement && cardElement) {
-        markerElement.style.zIndex = `${zIndex}`;
         markerElement.style.filter = `blur(${blur}px)`;
         cardElement.style.scale = `${scale}`;
       }
