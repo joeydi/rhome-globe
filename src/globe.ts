@@ -1,4 +1,4 @@
-import mapboxgl, { Marker } from "mapbox-gl";
+import mapboxgl, { Map, Marker } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import data from "./data.json";
 
@@ -14,7 +14,7 @@ const scaleZ = mapRange(0, 90, 1000, 0);
 const scaleBlur = mapRange(3000, 10000, 0, 10);
 const scaleScale = mapRange(0, 10000, 1, 0.5);
 
-const updateMarkers = (markers, map) => {
+const updateMarkers = (markers: Marker[], map: Map) => {
   const center = map.getCenter();
 
   for (const marker of markers) {
