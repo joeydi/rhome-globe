@@ -17,7 +17,7 @@ export function initGlobe(element: HTMLDivElement | null) {
 
   const map = new mapboxgl.Map({
     container: element,
-    style: "mapbox://styles/joeydi/cm1jhfcv6002001p850dd15pk",
+    style: "mapbox://styles/rhome/cm1z8z3e300sg01pbeyd966ey",
     center: [-96.4, 56.43],
     zoom: 3,
     maxZoom: 4.8,
