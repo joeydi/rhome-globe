@@ -52,6 +52,56 @@ export function initGlobe(element: HTMLDivElement | null) {
     touchPitch: false,
   });
 
+  const secondsPerRevolution = 120;
+  let userInteracting = false;
+  let timeoutDuration = 3000;
+  let interactionTimeout: ReturnType<typeof setTimeout>;
+
+  function spinGlobe() {
+    if (!userInteracting) {
+      let distancePerSecond = 360 / secondsPerRevolution;
+
+      const center = map.getCenter();
+
+      center.lng += distancePerSecond;
+
+      map.easeTo({ center, duration: 1000, easing: (n) => n });
+    }
+  }
+
+  spinGlobe();
+
+  // Pause spinning on interaction
+  map.on("mousedown", () => {
+    userInteracting = true;
+    clearTimeout(interactionTimeout);
+  });
+
+  // Restart spinning the globe when interaction is complete
+  map.on("mouseup", () => {
+    interactionTimeout = setTimeout(() => {
+      userInteracting = false;
+      spinGlobe();
+    }, timeoutDuration);
+  });
+
+  map.on("dragend", () => {
+    interactionTimeout = setTimeout(() => {
+      userInteracting = false;
+    }, timeoutDuration);
+  });
+
+  // When animation is complete, start spinning again
+  map.on("moveend", () => {
+    if (userInteracting) {
+      interactionTimeout = setTimeout(() => {
+        spinGlobe();
+      }, timeoutDuration);
+    } else {
+      spinGlobe();
+    }
+  });
+
   const markers: Marker[] = [];
 
   for (const feature of data) {
