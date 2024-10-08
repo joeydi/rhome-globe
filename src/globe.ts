@@ -4,6 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 interface Feature {
+  url?: string;
   image: string;
   country: string;
   price: string;
@@ -171,15 +172,26 @@ export function initGlobe(element: HTMLDivElement | null) {
     const markers: Marker[] = [];
 
     for (const feature of data) {
-      const el = document.createElement("div");
+      let el;
+
+      if (feature.url) {
+        el = document.createElement("a");
+        el.href = feature.url;
+        el.target = "_blank";
+      } else {
+        el = document.createElement("div");
+      }
+
       el.className = "marker";
       el.innerHTML = `
         <div class="wrap">
-          <div class="card">
-            <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
-            <div class="details">
-              <span>${feature.price}</span>
-              <span>${feature.type}</span>
+          <div class="scale">
+            <div class="card">
+              <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
+              <div class="details">
+                <span>${feature.price}</span>
+                <span>${feature.type}</span>
+              </div>
             </div>
           </div>
           <div class="flag">

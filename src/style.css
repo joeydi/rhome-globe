@@ -56,6 +56,7 @@ header {
   content: "";
   position: absolute;
   z-index: 1000;
+  pointer-events: none;
   left: 0;
   top: 0;
   width: 100%;
@@ -88,9 +89,23 @@ header {
   }
 }
 
+.marker:active {
+  text-decoration: none;
+}
+
+.marker:hover .scale {
+  transform: scale(1.05) !important;
+}
+
 .marker .wrap {
   opacity: 0;
   transition: opacity 0.4s;
+}
+
+.marker .scale {
+  will-change: transform;
+  transform-origin: 50% 100%;
+  transition: transform 0.2s cubic-bezier(0, 0, 0.01, 1.01);
 }
 
 .marker .card {
