@@ -3,19 +3,9 @@
   z-index: 0;
   width: 100%;
   aspect-ratio: 0.85;
+  max-width: 1400px;
+  margin: 0 auto;
 }
-
-/* #globe::after {
-  content: "";
-  position: absolute;
-  z-index: 1000;
-  pointer-events: none;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 20vw;
-  background: linear-gradient(to bottom, #0e121b, transparent) 50% 0 repeat-x;
-} */
 
 @media (min-width: 768px) {
   #globe {
