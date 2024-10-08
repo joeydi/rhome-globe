@@ -60,12 +60,18 @@ const updateMarkers = (markers: Marker[], map: Map) => {
     const distance = center.distanceTo(marker.getLngLat()) / 1000;
     const blur = scaleBlur(distance);
     const scale = scaleScale(distance);
+    const lngDiff = Math.abs(center.lng - marker.getLngLat().lng);
 
     const markerElement = marker.getElement();
+    const wrapElement: HTMLDivElement | null = markerElement.querySelector(".wrap");
     const cardElement: HTMLDivElement | null = markerElement.querySelector(".card");
 
-    if (markerElement && cardElement) {
-      markerElement.style.filter = `blur(${blur}px)`;
+    if (wrapElement) {
+      wrapElement.style.filter = `blur(${blur}px)`;
+      wrapElement.style.opacity = lngDiff > 60 ? "0" : "1";
+    }
+
+    if (cardElement) {
       cardElement.style.scale = `${scale}`;
     }
   }
@@ -79,6 +85,7 @@ export function initGlobe(element: HTMLDivElement | null) {
   const map = new mapboxgl.Map({
     container: element,
     style: "mapbox://styles/rhome/cm1z8z3e300sg01pbeyd966ey",
+    projection: "globe",
     center: [-96.4, 56.43],
     zoom: zoomScale(window.innerWidth),
     maxZoom: 4.8,
@@ -160,18 +167,25 @@ export function initGlobe(element: HTMLDivElement | null) {
       const el = document.createElement("div");
       el.className = "marker";
       el.innerHTML = `
-        <div class="card">
-          <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
-          <div class="details">
-            <span>${feature.price}</span>
-            <span>${feature.type}</span>
+        <div class="wrap">
+          <div class="card">
+            <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
+            <div class="details">
+              <span>${feature.price}</span>
+              <span>${feature.type}</span>
+            </div>
           </div>
-        </div>
-        <div class="flag">
-          <img src="${import.meta.env.VITE_ASSET_ROOT}/flags/${feature.country}.svg" alt="" />
+          <div class="flag">
+            <img src="${import.meta.env.VITE_ASSET_ROOT}/flags/${feature.country}.svg" alt="" />
+          </div>
         </div>`;
 
-      const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
+      const marker = new mapboxgl.Marker({
+        element: el,
+        anchor: "bottom",
+      })
+        .setLngLat([feature.lng, feature.lat])
+        .addTo(map);
 
       const zIndex = Math.floor(scaleZ(feature.lat)).toString();
       const element = marker.getElement();
