@@ -1,8 +1,16 @@
 import mapboxgl, { Map, Marker } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import data from "./data.json";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
+interface Feature {
+  image: string;
+  country: string;
+  price: string;
+  type: string;
+  lng: number;
+  lat: number;
+}
 
 const mapRange = (inMin: number, inMax: number, outMin: number, outMax: number) => {
   return function scale(value: number) {
@@ -14,6 +22,30 @@ const scaleZ = mapRange(0, 90, 1000, 0);
 const scaleBlur = mapRange(3000, 10000, 0, 10);
 const scaleScale = mapRange(0, 10000, 1, 0.5);
 const zoomScale = mapRange(320, 1600, 1.25, 3.25);
+
+const fetchData = async (): Promise<Feature[] | null> => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_ASSET_ROOT}/data.json`);
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    let message = "Unknown Error";
+
+    if (error instanceof Error) {
+      message = error.message;
+    }
+
+    console.error(message);
+
+    return null;
+  }
+};
 
 const updateMarkers = (markers: Marker[], map: Map) => {
   const center = map.getCenter();
@@ -111,35 +143,41 @@ export function initGlobe(element: HTMLDivElement | null) {
     }
   });
 
-  const markers: Marker[] = [];
+  fetchData().then((data) => {
+    if (!data) {
+      return;
+    }
 
-  for (const feature of data) {
-    const el = document.createElement("div");
-    el.className = "marker";
-    el.innerHTML = `
-      <div class="card">
-        <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
-        <div class="details">
-          <span>${feature.price}</span>
-          <span>${feature.type}</span>
+    const markers: Marker[] = [];
+
+    for (const feature of data) {
+      const el = document.createElement("div");
+      el.className = "marker";
+      el.innerHTML = `
+        <div class="card">
+          <img src="${import.meta.env.VITE_ASSET_ROOT}${feature.image}" alt="" />
+          <div class="details">
+            <span>${feature.price}</span>
+            <span>${feature.type}</span>
+          </div>
         </div>
-      </div>
-      <div class="flag">
-        <img src="${import.meta.env.VITE_ASSET_ROOT}/flags/${feature.country}.svg" alt="" />
-      </div>`;
+        <div class="flag">
+          <img src="${import.meta.env.VITE_ASSET_ROOT}/flags/${feature.country}.svg" alt="" />
+        </div>`;
 
-    const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
+      const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" }).setLngLat([feature.lng, feature.lat]).addTo(map);
 
-    const zIndex = Math.floor(scaleZ(feature.lat)).toString();
-    const element = marker.getElement();
-    element.style.zIndex = zIndex;
+      const zIndex = Math.floor(scaleZ(feature.lat)).toString();
+      const element = marker.getElement();
+      element.style.zIndex = zIndex;
 
-    markers.push(marker);
-  }
+      markers.push(marker);
+    }
 
-  updateMarkers(markers, map);
-
-  map.on("move", () => {
     updateMarkers(markers, map);
+
+    map.on("move", () => {
+      updateMarkers(markers, map);
+    });
   });
 }
