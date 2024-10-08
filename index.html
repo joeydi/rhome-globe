@@ -1,17 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="placeholder">
 
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Rhome</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
 
-    <body>
-        <header></header>
-        <div id="globe"></div>
-        <script type="module" src="/src/main.ts"></script>
-    </body>
+        color-scheme: light dark;
+        color: rgba(255, 255, 255, 0.87);
+        background-color: #0e121b;
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      * {
+        margin: 0;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        min-height: 100%;
+      }
+
+      header {
+        position: relative;
+        z-index: 1;
+        height: 79vw;
+        background: url("https://rhome-website-dev.s3.amazonaws.com/globe/header-mobile.svg") 50% 0 / contain no-repeat;
+      }
+
+      @media (min-width: 992px) {
+        header {
+          height: 27vw;
+          background: url("https://rhome-website-dev.s3.amazonaws.com/globe/header-desktop.svg") 50% 0 / contain no-repeat;
+        }
+      }
+    </style>
+    <title>Rhome</title>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="globe"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 
 </html>
