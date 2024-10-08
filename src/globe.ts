@@ -96,7 +96,14 @@ export function initGlobe(element: HTMLDivElement | null) {
     doubleClickZoom: false,
     dragRotate: false,
     touchPitch: false,
+    attributionControl: false,
   });
+
+  map.addControl(
+    new mapboxgl.AttributionControl({
+      compact: true,
+    })
+  );
 
   window.addEventListener("resize", () => {
     map.setZoom(zoomScale(window.innerWidth));
