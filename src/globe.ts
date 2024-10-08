@@ -13,6 +13,7 @@ const mapRange = (inMin: number, inMax: number, outMin: number, outMax: number) 
 const scaleZ = mapRange(0, 90, 1000, 0);
 const scaleBlur = mapRange(3000, 10000, 0, 10);
 const scaleScale = mapRange(0, 10000, 1, 0.5);
+const zoomScale = mapRange(320, 1600, 1.25, 3.25);
 
 const updateMarkers = (markers: Marker[], map: Map) => {
   const center = map.getCenter();
@@ -41,15 +42,19 @@ export function initGlobe(element: HTMLDivElement | null) {
     container: element,
     style: "mapbox://styles/rhome/cm1z8z3e300sg01pbeyd966ey",
     center: [-96.4, 56.43],
-    zoom: 3,
+    zoom: zoomScale(window.innerWidth),
     maxZoom: 4.8,
     minZoom: 2.5,
-    pitch: 75,
+    pitch: 60,
     scrollZoom: false,
     boxZoom: false,
     doubleClickZoom: false,
     dragRotate: false,
     touchPitch: false,
+  });
+
+  window.addEventListener("resize", () => {
+    map.setZoom(zoomScale(window.innerWidth));
   });
 
   const secondsPerRevolution = 120;
