@@ -12,16 +12,22 @@ interface Feature {
   lat: number;
 }
 
-const mapRange = (inMin: number, inMax: number, outMin: number, outMax: number) => {
+const mapRange = (inMin: number, inMax: number, outMin: number, outMax: number, clamp: boolean = false) => {
   return function scale(value: number) {
-    return outMin + (outMax - outMin) * ((value - inMin) / (inMax - inMin));
+    let out = outMin + (outMax - outMin) * ((value - inMin) / (inMax - inMin));
+
+    if (clamp) {
+      out = Math.min(outMax, Math.max(outMin, out));
+    }
+
+    return out;
   };
 };
 
 const scaleZ = mapRange(0, 90, 1000, 0);
 const scaleBlur = mapRange(3000, 10000, 0, 10);
 const scaleScale = mapRange(0, 10000, 1, 0.5);
-const zoomScale = mapRange(320, 1600, 1.25, 3.25);
+const zoomScale = mapRange(320, 1920, 1.25, 3.5, true);
 
 const fetchData = async (): Promise<Feature[] | null> => {
   try {
@@ -77,7 +83,7 @@ export function initGlobe(element: HTMLDivElement | null) {
     zoom: zoomScale(window.innerWidth),
     maxZoom: 4.8,
     minZoom: 2.5,
-    pitch: 60,
+    pitch: 70,
     scrollZoom: false,
     boxZoom: false,
     doubleClickZoom: false,
