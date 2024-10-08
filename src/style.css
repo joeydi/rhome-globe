@@ -50,7 +50,6 @@ header {
   z-index: 0;
   width: 100%;
   aspect-ratio: 0.85;
-  margin-top: -20vw;
 }
 
 #globe::after {
