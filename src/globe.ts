@@ -84,6 +84,7 @@ export function initGlobe(element: HTMLDivElement | null) {
 
   // Restart spinning the globe when interaction is complete
   map.on("mouseup", () => {
+    clearTimeout(interactionTimeout);
     interactionTimeout = setTimeout(() => {
       userInteracting = false;
       spinGlobe();
@@ -91,18 +92,16 @@ export function initGlobe(element: HTMLDivElement | null) {
   });
 
   map.on("dragend", () => {
+    clearTimeout(interactionTimeout);
     interactionTimeout = setTimeout(() => {
       userInteracting = false;
+      spinGlobe();
     }, timeoutDuration);
   });
 
   // When animation is complete, start spinning again
   map.on("moveend", () => {
-    if (userInteracting) {
-      interactionTimeout = setTimeout(() => {
-        spinGlobe();
-      }, timeoutDuration);
-    } else {
+    if (!userInteracting) {
       spinGlobe();
     }
   });
