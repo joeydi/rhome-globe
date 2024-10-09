@@ -18,7 +18,11 @@ const mapRange = (inMin: number, inMax: number, outMin: number, outMax: number, 
     let out = outMin + (outMax - outMin) * ((value - inMin) / (inMax - inMin));
 
     if (clamp) {
-      out = Math.min(outMax, Math.max(outMin, out));
+      if (outMin <= outMax) {
+        out = Math.min(outMax, Math.max(outMin, out));
+      } else {
+        out = Math.max(outMax, Math.min(outMin, out));
+      }
     }
 
     return out;
@@ -29,6 +33,7 @@ const scaleZ = mapRange(0, 90, 1000, 0);
 const scaleBlur = mapRange(3000, 10000, 0, 10);
 const scaleScale = mapRange(0, 10000, 1, 0.5);
 const zoomScale = mapRange(320, 1400, 1.25, 2.5, true);
+const pitchScale = mapRange(600, 1000, 90, 45, true);
 
 const fetchData = async (): Promise<Feature[] | null> => {
   try {
@@ -91,7 +96,7 @@ export function initGlobe(element: HTMLDivElement | null) {
     zoom: zoomScale(window.innerWidth),
     maxZoom: 4.8,
     minZoom: 2.5,
-    pitch: 70,
+    pitch: pitchScale(window.innerHeight),
     scrollZoom: false,
     boxZoom: false,
     doubleClickZoom: false,
@@ -108,6 +113,7 @@ export function initGlobe(element: HTMLDivElement | null) {
 
   window.addEventListener("resize", () => {
     map.setZoom(zoomScale(window.innerWidth));
+    map.setPitch(pitchScale(window.innerHeight));
   });
 
   const secondsPerRevolution = 120;
